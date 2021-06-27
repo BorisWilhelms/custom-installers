@@ -21,7 +21,7 @@ cat >> $TARGET/applications/postman.desktop <<EOF
 [Desktop Entry]
 Version=1.0
 Terminal=false
-Type=Application
+Type=Development
 Name=Postman
 Exec=/usr/bin/postman
 Icon=/usr/share/Postman/app/resources/app/assets/icon.png
