@@ -6,23 +6,15 @@ fi
 
 URL=https://dl.pstmn.io/download/latest/linux64
 TARGET=/usr/share
-LINK=/usr/bin/postman
 
 curl -s $URL | tar xvz -C $TARGET
-
-if [ -e $LINK ]; then
-    rm $LINK
-fi
-
-ln -s /usr/share/Postman/Postman /usr/bin/postman
-
-cat >> $TARGET/applications/postman.desktop <<EOF
+cat > $TARGET/applications/postman.desktop <<EOF
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
 Terminal=false
-Type=Development
+Type=Application
 Name=Postman
-Exec=/usr/bin/postman
-Icon=/usr/share/Postman/app/resources/app/assets/icon.png
+Exec=$TARGET/Postman/Postman
+Icon=$TARGET/Postman/app/resources/app/assets/icon.png
 EOF
