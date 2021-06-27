@@ -4,13 +4,15 @@ if [ $(id -u) -ne 0 ]; then
     exit
 fi
 
+TARGET=/var/tmp/azuredatastudio.deb
 REGEX="\[linux-deb\]: ([a-z0-9:?=\.\/]*)\\\r"
 CONTENT=$(curl -s https://api.github.com/repos/microsoft/azuredatastudio/releases/latest)
 
 if [[ $CONTENT =~ $REGEX ]]; then
     echo "Downloading deb file..."
-    curl -sL "${BASH_REMATCH[1]}" -o /var/tmp/azuredatastudio.deb
-    dpkg -i /var/tmp/azuredatastudio.deb
+    curl -sL "${BASH_REMATCH[1]}" -o $TARGET
+    dpkg -i $TARGET
+    rm -f $TARGET
 else
     echo "Could not get download url..."
 fi
